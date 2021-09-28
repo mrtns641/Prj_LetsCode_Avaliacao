@@ -11,7 +11,7 @@ namespace Prj_LetsCode_Avaliacao
         public string Nome 
         {
             get { return nome;}
-             private set { nome = value;}
+            private set { nome = value;}
         }
 
         

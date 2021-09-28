@@ -21,7 +21,7 @@ namespace Prj_LetsCode_Avaliacao
             set { peso = value;}
         }
 
-        
+        // Construtor da Classe Bagagem
         public Bagagem(double peso,string descricao){
             this.Peso = peso;
             this.Descricao=descricao;
