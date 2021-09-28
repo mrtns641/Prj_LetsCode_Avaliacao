@@ -5,7 +5,6 @@ namespace Prj_LetsCode_Avaliacao
     public class Bagagem
     {
         
-
         private double peso;
         private string descricao;
 
@@ -15,7 +14,7 @@ namespace Prj_LetsCode_Avaliacao
             set { descricao=value;}
         }
         
-        public string Peso
+        public double Peso
         {
             get { return peso;}
             set { peso = value;}

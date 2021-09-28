@@ -4,7 +4,6 @@ namespace Prj_LetsCode_Avaliacao
 {
     public class Cliente 
     {
-        
 
         private string nome;
         
@@ -17,7 +16,6 @@ namespace Prj_LetsCode_Avaliacao
         
         public Cliente(string nome){
             this.Nome = nome;
-            
         }
 
     }

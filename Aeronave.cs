@@ -6,6 +6,7 @@ namespace Prj_LetsCode_Avaliacao
     {
         
         private string modelo;
+        private string identificacao;
         private int lugares;
 
         public string Modelo
@@ -14,6 +15,12 @@ namespace Prj_LetsCode_Avaliacao
             set { modelo = value;}
         }
         
+        public string Identificacao
+        {
+            get {return identificacao;}
+            set {identificacao = value;}
+        }
+
         public int Lugares
         {
             get { return lugares;}
@@ -21,11 +28,10 @@ namespace Prj_LetsCode_Avaliacao
         }
 
         // Construtor da Classe Aeronave
-        public Aeronave(string modelo, int lugares){
+        public Aeronave(string modelo, string identificacao, int lugares){
             this.Modelo = modelo;
-            this.Lugares=lugares;
-
-            
+            this.Identificacao = identificacao;
+            this.Lugares=lugares; 
             
         }
 

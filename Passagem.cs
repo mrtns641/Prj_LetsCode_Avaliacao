@@ -5,7 +5,6 @@ namespace Prj_LetsCode_Avaliacao
     public class Passagem
     {
         
-
         private string nomePassageiro;
         private int assento;
 
@@ -15,7 +14,7 @@ namespace Prj_LetsCode_Avaliacao
             set { nomePassageiro = value;}
         }
         
-        public string Assento
+        public int Assento
         {
             get { return assento;}
             set { assento = value;}
@@ -26,8 +25,6 @@ namespace Prj_LetsCode_Avaliacao
             this.NomePassageiro = nomePassageiro;
             this.Assento = assento;
 
-            
-            
         }
 
     }
