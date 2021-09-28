@@ -1,3 +1,5 @@
+using System;
+
 namespace Prj_LetsCode_Avaliacao
 {
     public class Produto
@@ -16,7 +18,7 @@ namespace Prj_LetsCode_Avaliacao
 
         public Produto(string nome, double preco){
             this.Nome = nome;
-            this.Preco = preco
+            this.Preco = preco;
         }
 
     }
