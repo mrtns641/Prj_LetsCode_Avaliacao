@@ -6,6 +6,7 @@ namespace Prj_LetsCode_Avaliacao
   {
 
     private int assento;
+    
     private double valor;
     public double Valor
     {

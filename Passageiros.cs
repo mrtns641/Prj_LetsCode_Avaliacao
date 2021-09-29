@@ -17,10 +17,9 @@ namespace Prj_LetsCode_Avaliacao
             set {cpf = value;}
         }
 
-        Passageiros(string nome, string cpf){
+        public Passageiros(string nome, string cpf){
             this.Nome = nome;
             this.Cpf = cpf;
-
         }
 
     }

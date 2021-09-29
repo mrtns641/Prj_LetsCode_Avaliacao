@@ -24,8 +24,6 @@ namespace Prj_LetsCode_Avaliacao
         public Bagagem(double peso,string descricao){
             this.Peso = peso;
             this.Descricao=descricao;
-
-            
             
         }
 
