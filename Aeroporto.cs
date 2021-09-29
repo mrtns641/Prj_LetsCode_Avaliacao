@@ -53,7 +53,7 @@ namespace Prj_LetsCode_Avaliacao
                 PesoBagagem = Convert.ToDouble(Console.ReadLine());
             }
             
-            Bagagem auxiliar = new Bagagem(PesoBagagem, DescricaoBagagem)
+            Bagagem auxiliar = new Bagagem(PesoBagagem, DescricaoBagagem);
             this.bagagem = auxiliar; 
         }
 
