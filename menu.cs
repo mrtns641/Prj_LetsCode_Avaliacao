@@ -20,7 +20,8 @@ namespace Prj_LetsCode_Avaliacao
                     praca.Menu();
                     break;
                 case 2:
-                    //chamar aeroporto
+                    Aeroporto lounge = new Aeroporto();
+                    lounge.Menu();
                     break;
                 case 0:
                     Console.WriteLine("Agradecemos pela visita! Volte sempre!");

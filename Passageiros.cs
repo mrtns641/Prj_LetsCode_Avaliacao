@@ -4,6 +4,7 @@ namespace Prj_LetsCode_Avaliacao
     {
         private string nome;
         private string cpf;
+        private string passaporte;
 
         public string Nome
         {
@@ -17,9 +18,14 @@ namespace Prj_LetsCode_Avaliacao
             set {cpf = value;}
         }
 
-        public Passageiros(string nome, string cpf){
+        public string Passaporte{
+            get {return passaporte;}
+            set {passaporte = value;}
+        }
+        public Passageiros(string nome, string cpf, string passaporte){
             this.Nome = nome;
             this.Cpf = cpf;
+            this.Passaporte = passaporte;
         }
 
     }
