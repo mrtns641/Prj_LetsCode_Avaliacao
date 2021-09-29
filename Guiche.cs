@@ -35,7 +35,11 @@ namespace Prj_LetsCode_Avaliacao
 
       Console.WriteLine($"{passageiro.Nome}, seu voo com destino a {passagem.Destino}");
       Console.WriteLine($"será na aeronave {aeronave.Modelo} no valor de R$: {passagem.Valor}");
-      Console.WriteLine($"Venda Finalizada, obrigado por voar {Nome} !");
+      if(bagagem.Peso!=0)
+      {
+        Console.WriteLine($"Sua bagagem de {bagagem.Peso}Kg poderá ser despachada no terminal de embarque.");
+      } 
+      Console.WriteLine($"Venda Finalizada, obrigado por voar {Nome}! Boa Viagem!");
 
 
     }
