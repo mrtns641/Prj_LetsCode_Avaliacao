@@ -24,7 +24,8 @@ namespace Prj_LetsCode_Avaliacao
             Console.WriteLine($"Produto - prato de {produto.Nome}");
             PesarPrato();
             Console.WriteLine($"Valor total: R${produto.Preco}");
-            Console.WriteLine($"{Nome} - Venda concluída! Volte sempre, {cliente.Nome}! \n");
+            Console.WriteLine($"CPF na nota: '{cliente.Cpf}'");
+            Console.WriteLine($"{Nome} - Venda concluída! Volte sempre, {cliente.Nome}!\n");
         }
         
         // Construtor da Classe SelfService.

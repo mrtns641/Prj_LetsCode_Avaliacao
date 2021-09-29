@@ -25,7 +25,8 @@ namespace Prj_LetsCode_Avaliacao
             Console.WriteLine($"Produto - {produto.Nome}");
             Console.WriteLine($"Total pago: R${produto.Preco}");
             PrepararPedido();
-            Console.WriteLine($"{Nome} - Processo finalizado! \n");
+            Console.WriteLine($"CPF na nota: '{cliente.Cpf}'");
+            Console.WriteLine($"{Nome} - Processo finalizado!\n");
         }
         
         // Construtor da Classe FastFood.

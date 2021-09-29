@@ -19,7 +19,7 @@ namespace Prj_LetsCode_Avaliacao
 
     public virtual void Vender()
     {
-      Console.WriteLine($"{passageiro.Nome}, seu voo com destino a {passagem.Destino} será na aeronave {aeronave.Modelo} no valor de R${passagem.Valor}.");
+      Console.WriteLine($"Cliente {passageiro.Nome} de CPF '{passageiro.Cpf}', seu voo com destino a {passagem.Destino} será na aeronave {aeronave.Modelo} de identificação '{aeronave.Identificacao}', no valor de R${passagem.Valor}.");
       if(bagagem.Peso!=0)
       {
         Console.WriteLine($"Sua bagagem de {bagagem.Peso}Kg poderá ser despachada no terminal de embarque.");
