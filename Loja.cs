@@ -5,10 +5,10 @@ namespace Prj_LetsCode_Avaliacao
 {
     public class Loja
     {
-        private List<Produto> produtos; 
-        private Venda venda;
+        protected List<Produto> produtos; 
+        protected Venda venda;
 
-        private string nome;
+        protected string nome;
         public string Nome 
         {
             get { return nome;}
@@ -19,18 +19,18 @@ namespace Prj_LetsCode_Avaliacao
             this.Nome = nome;
         }
 
-        private Produto RetornarProdutoCriado(){
+        protected Produto RetornarProdutoCriado(){
             Produto produto = new Produto(ObterNomeProduto(), 
                             ObterPrecoProduto());
             return produto;
         }
 
-        private string ObterNomeProduto(){
+        protected string ObterNomeProduto(){
             Console.WriteLine("Nome:" );
             return Console.ReadLine();
         }
 
-        private double ObterPrecoProduto(){
+        protected double ObterPrecoProduto(){
             double entradaPreco = 0;
             Console.WriteLine("Preço:" );
             Double.TryParse(Console.ReadLine(), out entradaPreco);

@@ -6,13 +6,6 @@ namespace Prj_LetsCode_Avaliacao
     public class FastFood : Loja, ILoja
     {
 
-        private string nome;
-        public string Nome 
-        {
-            get { return nome;}
-            set { nome = value;}
-        }
-
         // Método de preparação do pedido.
         public void PrepararPedido(){
             Console.WriteLine($"Preparando .");

@@ -6,13 +6,6 @@ namespace Prj_LetsCode_Avaliacao
     public class SelfService : Loja, ILoja
     {
 
-        private string nome;
-        public string Nome 
-        {
-            get { return nome;}
-            set { nome = value;}
-        }
-
         // Método de pesagem do prato.
         public void PesarPrato(){
             Console.WriteLine($"Pesando o prato de .");

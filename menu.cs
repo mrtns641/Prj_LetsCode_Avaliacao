@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace Prj_LetsCode_Avaliacao
 {
@@ -127,21 +128,42 @@ namespace Prj_LetsCode_Avaliacao
             Console.Write("Digite o nome do FastFood que deseja " +
             "cadastrar o produto: ");
             string NomeLojaReceberaProduto = Console.ReadLine();
-            int indexLoja = shopping.FastFoods.FindIndex(loja => 
-            loja.Nome == NomeLojaReceberaProduto);
+            FastFood aux = new FastFood("Proibido");
+            foreach (var item in shopping.FastFoods)
+            {
+                if(item.Nome == NomeLojaReceberaProduto){
+                    aux = item;
+                    item.AddProduto();
+                } 
+            }
+            
+            if(aux.Nome=="Proibido") {
+                Console.WriteLine("Loja não encontrada, tente novamente");
+                CadastrarProdutoFastFood();
+            } else {
+                AcaoConcluida();
+                MenuFastFood();
+            }
+
+            // var teste = (from fastFood in shopping.FastFoods where 
+            // fastFood.Nome == NomeLojaReceberaProduto select 
+            // fastFood).FirstOrDefault();
+            // Console.WriteLine(teste);
+            // teste.AddProduto();
+            // int indexLoja = shopping.FastFoods.FindIndex(loja => 
+            // loja.Nome == NomeLojaReceberaProduto);
             // int indexLoja = shopping.FastFoods.FindIndex(loja=>
             // loja.Nome.Equals(NomeLojaReceberaProduto, 
             // StringComparison.InvariantCultureIgnoreCase));
                                     
-            if(indexLoja == -1) {
-                Console.WriteLine("Loja não encontrada, tente novamente");
-                CadastrarProdutoFastFood();
-            } else {
-                shopping.FastFoods[indexLoja].AddProduto();
-            }
+            // if(indexLoja == -1) {
+            //     Console.WriteLine("Loja não encontrada, tente novamente");
+            //     CadastrarProdutoFastFood();
+            // } else {
+            //     shopping.FastFoods[indexLoja].AddProduto();
+            // }
 
-            AcaoConcluida();
-            MenuFastFood();
+            
         }
 
 
