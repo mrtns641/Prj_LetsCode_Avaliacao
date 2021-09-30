@@ -14,7 +14,7 @@ namespace Prj_LetsCode_Avaliacao
             Console.WriteLine("4 - Cadastrar Passageiro");
             Console.WriteLine("5 - Cadastrar Aeronave");
             Console.WriteLine("6 - Simular venda");
-
+            OpcaoSelecionadaMenuInicial();
         }
 
         public void ApresentarSegmento()
@@ -32,13 +32,12 @@ namespace Prj_LetsCode_Avaliacao
             return opcao;
         }
 
-        private void CadastrarLoja(int opcao){
+        private void CadastrarLoja(){
             switch (opcaoSelecionada())
             { 
                 case 1:
                     Console.WriteLine("Nome do FastFood:");
-                    FastFood fastFood = new FastFood
-                    (Console.ReadLine());
+                    FastFood fastFood = new FastFood(Console.ReadLine());
                     shopping.AddFastFood(fastFood);
                     break;
                     
@@ -51,7 +50,7 @@ namespace Prj_LetsCode_Avaliacao
 
                 case 3:
                     Console.WriteLine("Nome da Loja de Passagens:");
-                    lojaPassagens lojaPassagens = new LojaPassagens
+                    LojaPassagens lojaPassagens = new LojaPassagens
                     (Console.ReadLine());
                     shopping.AddLojaPassagens(lojaPassagens);
                     break;
@@ -62,7 +61,7 @@ namespace Prj_LetsCode_Avaliacao
 
                 default:
                     Console.WriteLine("Opção inválida! Favor tentar novamente.");
-                    MenuLojas();
+                    CadastrarLoja();
                     break;
             }
         }
@@ -76,13 +75,15 @@ namespace Prj_LetsCode_Avaliacao
                     Console.Write("Digite o nome do FastFood que deseja " +
                     "cadastrar o produto:");
                     NomeLojaReceberaProduto = Console.ReadLine();
-                    int indexLoja = shopping.fastFoods.FindIndex(loja=>loja.nome == 
-                                                            NomeLojaReceberaProduto);
+                    int indexLoja = shopping.FastFoods.FindIndex(loja=>
+                    loja.Nome.Equals(NomeLojaReceberaProduto, 
+                    StringComparison.InvariantCultureIgnoreCase));
+                                            
                     if(indexLoja == -1) {
                         Console.WriteLine("Loja não encontrada, tente novamente");
                         CadastrarProduto();
                     } else {
-                        shopping.fastFoods(indexLoja).AddProduto();
+                        shopping.FastFoods[indexLoja].AddProduto();
                     }
                     break;
                     
@@ -104,7 +105,7 @@ namespace Prj_LetsCode_Avaliacao
 
                 default:
                     Console.WriteLine("Opção inválida! Favor tentar novamente.");
-                    MenuLojas();
+                    CadastrarProduto();
                     break;
             }
         }
@@ -137,6 +138,5 @@ namespace Prj_LetsCode_Avaliacao
                     break;
             }
         } 
-        
     }
 }

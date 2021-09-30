@@ -1,10 +1,10 @@
 using System;
+using System.Collections.Generic;
 
 namespace Prj_LetsCode_Avaliacao
 {
-    public class SelfService : ILoja
+    public class SelfService : Loja, ILoja
     {
-        private Produto produto;
 
         private string nome;
         public string Nome 
@@ -15,21 +15,19 @@ namespace Prj_LetsCode_Avaliacao
 
         // Método de pesagem do prato.
         public void PesarPrato(){
-            Console.WriteLine($"Pesando o prato de {produto.Nome}.");
+            Console.WriteLine($"Pesando o prato de .");
         }
         
         // Método de venda.
         public virtual void Vender(){
-            Console.WriteLine($"Produto - prato de {produto.Nome}");
+            Console.WriteLine($"Produto - prato de ");
             PesarPrato();
-            Console.WriteLine($"Valor total: R${produto.Preco}");
-            Console.WriteLine($"CPF na nota: '{cliente.Cpf}'");
-            Console.WriteLine($"{Nome} - Venda concluída! Volte sempre, {cliente.Nome}!\n");
+            Console.WriteLine($"Valor total: R$");
+            Console.WriteLine($"CPF na nota: ");
+            Console.WriteLine($"{Nome} - Venda concluída! Volte sempre!\n");
         }
         
         // Construtor da Classe SelfService.
-        public SelfService(string nome){
-            this.Nome = nome;
-        }
+        public SelfService(string nome) : base(nome){}
     }
 }

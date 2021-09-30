@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace Prj_LetsCode_Avaliacao
 {
     public class Loja
     {
         private List<Produto> produtos; 
+        private Venda venda;
 
         private string nome;
         public string Nome 
@@ -19,23 +21,25 @@ namespace Prj_LetsCode_Avaliacao
 
         private Produto RetornarProdutoCriado(){
             Produto produto = new Produto(ObterNomeProduto(), 
-                            obterPrecoProduto());
+                            ObterPrecoProduto());
             return produto;
         }
 
         private string ObterNomeProduto(){
-            Console.WriteLine($"Nome:" );
+            Console.WriteLine("Nome:" );
             return Console.ReadLine();
         }
 
         private double ObterPrecoProduto(){
-            Console.WriteLine($"Preço:" );
-            return Console.ReadLine();
+            double entradaPreco = 0;
+            Console.WriteLine("Preço:" );
+            Double.TryParse(Console.ReadLine(), out entradaPreco);
+            return entradaPreco;
         }
 
         //adiciona um produto na sua lista de produtos
         public void AddProduto(){
-            produtos.add(RetornarProdutoCriado());
+            produtos.Add(RetornarProdutoCriado());
         }
     }
 }

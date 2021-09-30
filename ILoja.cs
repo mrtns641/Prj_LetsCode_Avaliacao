@@ -4,11 +4,8 @@ namespace Prj_LetsCode_Avaliacao
 {
     public interface ILoja
     {
-        string Nome { get; set; }
 
-        void Vender();
+        void Vender(Venda venda);
 
-        //adiciona um produto na sua lista de produtos
-        void AddProduto();
     }
 }
