@@ -5,19 +5,19 @@ namespace Prj_LetsCode_Avaliacao
     public class Venda
     {
 
-        private Cliente cliente = new Cliente();
-        private Produto produto = new Produto();
+        private Cliente cliente;
+        private Produto produto;
 
         public Cliente Cliente{
-            get{ return cliente}
+            get{ return cliente;}
         } 
 
         public Produto Produto{
-            get{ return produto}
+            get{ return produto;}
         } 
 
         //Método construtor da classe Venda
-        public void Venda(Cliente cliente, Produto produto){
+        public Venda(Cliente cliente, Produto produto){
             this.cliente = cliente;
             this.produto = produto;
         }

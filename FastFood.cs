@@ -20,7 +20,7 @@ namespace Prj_LetsCode_Avaliacao
         }
         
         // Método de venda.
-        public virtual void Vender(){
+        public virtual void Vender(Venda venda){
             Console.WriteLine($"Produto - ");
             Console.WriteLine($"Total pago: R$");
             PrepararPedido();

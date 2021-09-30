@@ -41,6 +41,9 @@ namespace Prj_LetsCode_Avaliacao
         }
 
         public void ListarFastFoods(){
+
+            Console.WriteLine("FastFoods cadastrados:");
+
             foreach (Loja loja in fastFoods)
             {
                 Console.WriteLine(loja.Nome);
