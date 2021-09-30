@@ -4,8 +4,7 @@ namespace Prj_LetsCode_Avaliacao
 {
     public class FastFood : ILoja
     {
-        private Produto produto;
-        private Cliente cliente;
+        private List<Produto> produtos;
 
         private string nome;
         public string Nome 
@@ -14,8 +13,28 @@ namespace Prj_LetsCode_Avaliacao
             set { nome = value;}
         }
 
+        private Produto RetornarProdutoCriado(){
+            Produto produto = new Produto(ObterNomeProduto(), 
+                            obterPrecoProduto());
+            return produto;
+        }
+
+        private string ObterNomeProduto(){
+            Console.WriteLine($"Nome:" );
+            return Console.ReadLine();
+        }
+
+        private double ObterPrecoProduto(){
+            Console.WriteLine($"Preço:" );
+            return Console.ReadLine();
+        }
+
+        private void AddProduto(Produto produto){
+            produtos.add(RetornarProdutoCriado());
+        }
+
         // Método de preparação do pedido.
-        public virtual void PrepararPedido(){
+        public void PrepararPedido(){
             Console.WriteLine($"Preparando {produto.Nome}.");
             Console.WriteLine($"{cliente.Nome}, o seu pedido está pronto!.");
         }

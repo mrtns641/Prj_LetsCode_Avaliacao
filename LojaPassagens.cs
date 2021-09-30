@@ -2,7 +2,7 @@ using System;
 
 namespace Prj_LetsCode_Avaliacao
 {
-    public class SelfService : ILoja
+    public class LojaPassagens : ILoja
     {
         private Produto produto;
 
@@ -27,8 +27,8 @@ namespace Prj_LetsCode_Avaliacao
             Console.WriteLine($"{Nome} - Venda concluída! Volte sempre, {cliente.Nome}!\n");
         }
         
-        // Construtor da Classe SelfService.
-        public SelfService(string nome){
+        // Construtor da Classe LojaPassagens.
+        public LojaPassagens(string nome){
             this.Nome = nome;
         }
     }

@@ -6,10 +6,11 @@ namespace Prj_LetsCode_Avaliacao
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Olá! Boas-vindas ao Zerg!");
+            var loja = new FastFood("Mc");
+            /*Console.WriteLine("Olá! Boas-vindas ao Zerg!");
             Console.WriteLine("Para começar, escolha uma das opções abaixo:");
             Menu inicio = new Menu();
-            inicio.MenuInicial();
+            inicio.MenuInicial();*/
         }
     }
 }

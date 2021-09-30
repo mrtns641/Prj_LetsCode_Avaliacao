@@ -7,6 +7,8 @@ namespace Prj_LetsCode_Avaliacao
         string Nome { get; set; }
 
         void Vender();
-    
+
+        //adiciona um produto na sua lista de produtos
+        void AddProduto();
     }
 }
