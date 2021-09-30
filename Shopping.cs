@@ -48,20 +48,32 @@ namespace Prj_LetsCode_Avaliacao
             {
                 Console.WriteLine(loja.Nome);
             }
+
+            Console.WriteLine("");
         }
 
         public void ListarSelfServices(){
+
+            Console.WriteLine("SelfServices cadastrados:");
+
             foreach (Loja loja in selfServices)
             {
                 Console.WriteLine(loja.Nome);
             }
+
+            Console.WriteLine("");
         }
 
         public void ListarLojasDePassagens(){
+
+            Console.WriteLine("Lojas de passagens cadastradas:");
+
             foreach (Loja loja in lojasPassagens)
             {
                 Console.WriteLine(loja.Nome);
             }
+
+            Console.WriteLine("");
         }
     }
 }

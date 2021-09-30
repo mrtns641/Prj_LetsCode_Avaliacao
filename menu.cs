@@ -127,9 +127,11 @@ namespace Prj_LetsCode_Avaliacao
             Console.Write("Digite o nome do FastFood que deseja " +
             "cadastrar o produto: ");
             string NomeLojaReceberaProduto = Console.ReadLine();
-            int indexLoja = shopping.FastFoods.FindIndex(loja=>
-            loja.Nome.Equals(NomeLojaReceberaProduto, 
-            StringComparison.InvariantCultureIgnoreCase));
+            int indexLoja = shopping.FastFoods.FindIndex(loja => 
+            loja.Nome == NomeLojaReceberaProduto);
+            // int indexLoja = shopping.FastFoods.FindIndex(loja=>
+            // loja.Nome.Equals(NomeLojaReceberaProduto, 
+            // StringComparison.InvariantCultureIgnoreCase));
                                     
             if(indexLoja == -1) {
                 Console.WriteLine("Loja não encontrada, tente novamente");
