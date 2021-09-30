@@ -128,42 +128,36 @@ namespace Prj_LetsCode_Avaliacao
             Console.Write("Digite o nome do FastFood que deseja " +
             "cadastrar o produto: ");
             string NomeLojaReceberaProduto = Console.ReadLine();
-            FastFood aux = new FastFood("Proibido");
+            bool lojaExiste = false;
             foreach (var item in shopping.FastFoods)
             {
                 if(item.Nome == NomeLojaReceberaProduto){
-                    aux = item;
+                    lojaExiste = true;
                     item.AddProduto();
+                    Console.WriteLine("Listando:");
+                    item.ListarProdutos();
                 } 
             }
             
-            if(aux.Nome=="Proibido") {
-                Console.WriteLine("Loja não encontrada, tente novamente");
-                CadastrarProdutoFastFood();
-            } else {
+            if(lojaExiste) {
                 AcaoConcluida();
                 MenuFastFood();
+            } else {
+                Console.WriteLine("Loja não encontrada, " +
+                "tente novamente");
+                CadastrarProdutoFastFood();
             }
 
-            // var teste = (from fastFood in shopping.FastFoods where 
-            // fastFood.Nome == NomeLojaReceberaProduto select 
-            // fastFood).FirstOrDefault();
-            // Console.WriteLine(teste);
-            // teste.AddProduto();
-            // int indexLoja = shopping.FastFoods.FindIndex(loja => 
-            // loja.Nome == NomeLojaReceberaProduto);
-            // int indexLoja = shopping.FastFoods.FindIndex(loja=>
-            // loja.Nome.Equals(NomeLojaReceberaProduto, 
-            // StringComparison.InvariantCultureIgnoreCase));
-                                    
-            // if(indexLoja == -1) {
-            //     Console.WriteLine("Loja não encontrada, tente novamente");
-            //     CadastrarProdutoFastFood();
-            // } else {
-            //     shopping.FastFoods[indexLoja].AddProduto();
-            // }
+            /*não usamos o linq pq do jeito apresentado abaixo não 
+            tem tratamento de erro; ou seja, se o usuário digitar 
+            uma loja inexistente sobe um erro na cara dele. Visto isso
+            optamos pelo foreach tradicional com um 'tratamento de 
+            erro' caso o usuário digite o nome de uma loja 
+            inexistente*/
 
-            
+            /*(from fastFood in shopping.FastFoods where 
+            fastFood.Nome == NomeLojaReceberaProduto select 
+            fastFood).FirstOrDefault().AddProduto();*/                  
         }
 
 

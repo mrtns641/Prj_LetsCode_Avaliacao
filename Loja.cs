@@ -5,7 +5,7 @@ namespace Prj_LetsCode_Avaliacao
 {
     public class Loja
     {
-        protected List<Produto> produtos; 
+        protected List<Produto> produtos = new List<Produto>(); 
         protected Venda venda;
 
         protected string nome;
@@ -40,6 +40,14 @@ namespace Prj_LetsCode_Avaliacao
         //adiciona um produto na sua lista de produtos
         public void AddProduto(){
             produtos.Add(RetornarProdutoCriado());
+        }
+
+        public void ListarProdutos(){
+            Console.WriteLine("Produtos da loja:");
+            foreach (Produto produto in produtos)
+            {
+                Console.WriteLine(produto.Nome);
+            }
         }
     }
 }
