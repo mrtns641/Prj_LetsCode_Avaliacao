@@ -30,12 +30,9 @@ namespace Prj_LetsCode_Avaliacao
         }
         
         // Construtor da Classe FastFood.
-        public FastFood(string nome, Produto produto, Cliente cliente){
+        public FastFood(string nome){
             this.Nome = nome;
-            this.produto = produto;
-            this.cliente = cliente;
         }
-
     }
 
 }
