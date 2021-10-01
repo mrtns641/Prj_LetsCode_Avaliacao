@@ -17,7 +17,6 @@ namespace Prj_LetsCode_Avaliacao
       Console.WriteLine("Favor selecionar uma opção para gerenciar ou simular:");
       Console.WriteLine("1 - Gerenciar lojas");
       Console.WriteLine("2 - Gerenciar clientes");
-      Console.WriteLine("3 - Simular venda");
       Console.WriteLine("0 - Sair");
       OpcaoSelecionadaMenuInicial();
     }
@@ -31,9 +30,6 @@ namespace Prj_LetsCode_Avaliacao
           break;
         case 2:
           MenuGerenciarClientes();
-          break;
-        case 3:
-          Console.Write("");
           break;
         case 0:
           Console.WriteLine("Agradecemos pela visita! Volte sempre!");
@@ -95,6 +91,7 @@ namespace Prj_LetsCode_Avaliacao
       Console.WriteLine("Selecione uma opção abaixo:");
       Console.WriteLine("1 - Cadastrar loja de fast food");
       Console.WriteLine("2 - Cadastrar produto");
+      Console.WriteLine("3 - Simular Venda");
       Console.WriteLine("0 - Voltar");
       OpcaoSelecionadaMenuFastFood();
     }
@@ -109,7 +106,10 @@ namespace Prj_LetsCode_Avaliacao
         case 2:
           CadastrarProdutoFastFood();
           break;
-        case 0: //voltar
+        case 3:
+          SimularVendaFastFood();
+          break;
+        case 0:
           MenuSegmento();
           break;
         default:
@@ -175,6 +175,55 @@ namespace Prj_LetsCode_Avaliacao
       fastFood.Nome == NomeLojaReceberaProduto select 
       fastFood).FirstOrDefault().AddProduto();*/
     }
+
+      private void SimularVendaFastFood()
+      {
+        if (shopping.FastFoods.Count == 0)
+        {
+          Console.WriteLine("É necessário antes cadastrar alguma loja de fast food para prosseguir e simular uma venda!\n");
+          MenuFastFood();
+        }
+
+         if (shopping.Clientes.Count == 0)
+        {
+          Console.WriteLine("É necessário antes cadastrar algum cliente para simular uma venda!\n");
+          MenuGerenciarClientes();
+        }
+
+        foreach (var item in shopping.FastFoods)
+        {
+           if (shopping.FastFoods.Produtos.Count == 0)
+            {
+            Console.WriteLine("É necessário antes cadastrar algum produto em alguma loja de fast food para simular uma venda!\n");
+            MenuFastFood();
+            }
+        }
+
+        shopping.ListarFastFoods();
+        Console.Write("Digite o nome do FastFood que deseja " +
+        "simular venda: ");
+        string NomeLojaSimularVenda = Console.ReadLine();
+        bool lojaExiste = false;
+        FastFood auxFastFood = new FastFood(""); 
+        foreach (var item in shopping.FastFoods)
+        {
+          if (item.Nome == NomeLojaSimularVenda)
+          {
+            lojaExiste = true;
+            auxFastFood = item;
+          }
+        }
+       
+        if (!lojaExiste)
+        {
+          Console.WriteLine("Loja não encontrada, " +
+          "tente novamente");
+          SimularVendaFastFood();
+        }
+
+        //Implementar o resto da função com produto e cliente
+
+      }
 
 
     private void MenuSelfService()
@@ -289,7 +338,7 @@ namespace Prj_LetsCode_Avaliacao
       AcaoConcluida();
       MenuLojaPassagem();
     }
-    
+
     private void CadastrarAeronave()
     {
       if (shopping.LojasPassagens.Count == 0)

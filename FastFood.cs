@@ -7,18 +7,18 @@ namespace Prj_LetsCode_Avaliacao
     {
 
         // Método de preparação do pedido.
-        public void PrepararPedido(){
-            Console.WriteLine($"Preparando .");
-            Console.WriteLine($", o seu pedido está pronto!.");
+        public void PrepararPedido(Cliente cliente, Produto produto){
+            Console.WriteLine($"Preparando {produto.Nome}.");
+            Console.WriteLine($"{cliente.Nome}, o seu pedido está pronto!.");
         }
         
         // Método de venda.
-        public virtual void Vender(Venda venda){
-            Console.WriteLine($"Produto - ");
-            Console.WriteLine($"Total pago: R$");
-            PrepararPedido();
-            Console.WriteLine($"CPF na nota: ");
-            Console.WriteLine($" - Processo finalizado!\n");
+        public virtual void Vender(Cliente cliente, Produto produto){
+            Console.WriteLine($"Pedido - {produto.Nome}");
+            Console.WriteLine($"Total pago: R$ {produto.Preco}");
+            Console.WriteLine($"CPF na nota: {cliente.Cpf}");
+            Console.WriteLine($"{Nome} - Processo finalizado!\n");
+            PrepararPedido(cliente, produto);
         }
         
         // Construtor da Classe FastFood.

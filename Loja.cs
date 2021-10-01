@@ -6,7 +6,12 @@ namespace Prj_LetsCode_Avaliacao
     public class Loja
     {
         protected List<Produto> produtos = new List<Produto>(); 
-        protected Venda venda;
+        public List<Produto> Produtos 
+        {
+            get {return produtos;}
+        }
+
+        /* protected Venda venda; */
 
         protected string nome;
         public string Nome 
@@ -14,6 +19,8 @@ namespace Prj_LetsCode_Avaliacao
             get { return nome;}
             set { nome = value;}
         }
+
+
 
          public Loja(string nome){
             this.Nome = nome;
