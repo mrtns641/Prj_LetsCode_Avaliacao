@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace Prj_LetsCode_Avaliacao
-{
+{                                                                                           //NAO ESQUECE DA COITADA DA ILOJA AQUI OK
     public class LojaPassagens : Loja //, ILoja
     {
 

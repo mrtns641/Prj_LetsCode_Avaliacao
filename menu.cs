@@ -277,6 +277,7 @@ namespace Prj_LetsCode_Avaliacao
       Console.WriteLine("Selecione uma opção abaixo:");
       Console.WriteLine("1 - Cadastrar loja de Self Service");
       Console.WriteLine("2 - Cadastrar produto");
+      Console.WriteLine("3 - Simular Venda");
       Console.WriteLine("0 - Voltar");
       OpcaoSelecionadaMenuSelfService();
     }
@@ -290,6 +291,9 @@ namespace Prj_LetsCode_Avaliacao
           break;
         case 2:
           CadastrarProdutoSelfService();
+          break;
+        case 3:
+          SimularVendaSelfService();
           break;
         case 0: //voltar
           MenuSegmento();
@@ -346,6 +350,104 @@ namespace Prj_LetsCode_Avaliacao
         CadastrarProdutoSelfService();
       }
     }
+
+    private void SimularVendaSelfService()
+    {
+        if (shopping.Clientes.Count == 0)
+        {
+          Console.WriteLine("É necessário antes cadastrar algum cliente para simular uma venda!\n");
+          MenuCliente();
+        }
+
+        if (shopping.SelfServices.Count == 0)
+        {
+          Console.WriteLine("É necessário antes cadastrar alguma loja de self service para prosseguir e simular uma venda!\n");
+          MenuSelfService();
+        }
+
+
+        foreach (var item in shopping.SelfServices)
+        {
+           if (item.Produtos.Count == 0)
+            {
+            Console.WriteLine("É necessário antes cadastrar algum produto em alguma loja de self service para simular uma venda!\n");
+            MenuSelfService();
+            }
+        }
+
+        shopping.ListarSelfServices();
+        Console.Write("Digite o nome do SelfService que deseja " +
+        "simular venda: ");
+        string NomeLojaSimularVenda = Console.ReadLine();
+        bool lojaExiste = false;
+        SelfService auxSelfService = new SelfService(""); 
+        foreach (var item in shopping.SelfServices)
+        {
+          if (item.Nome == NomeLojaSimularVenda)
+          {
+            lojaExiste = true;
+            auxSelfService = item;
+          }
+        }
+       
+        if (!lojaExiste)
+        {
+          Console.WriteLine("Loja não encontrada, " +
+          "tente novamente");
+          SimularVendaSelfService();
+        }
+
+        auxSelfService.ListarProdutos();
+        Console.Write("Digite o nome do produto que deseja " +
+        "simular venda: ");
+        string NomeProdutoSimularVenda = Console.ReadLine();
+        bool produtoExiste = false;
+        Produto auxProduto = new Produto("",0); 
+        foreach (var item in auxSelfService.Produtos)
+        {
+          if (item.Nome == NomeProdutoSimularVenda)
+          {
+            produtoExiste = true;
+            auxProduto = item;
+          }
+        }
+       
+        if (!produtoExiste)
+        {
+          Console.WriteLine("Produto não encontrado, " +
+          "tente novamente");
+          SimularVendaSelfService();
+        }
+
+        shopping.ListarClientes();
+        Console.Write("Digite o nome do cliente que se deseja " +
+        "simular venda: ");
+        string NomeClienteSimularVenda = Console.ReadLine();
+        bool clienteExiste = false;
+        Cliente auxCliente = new Cliente("",""); 
+        foreach (var item in shopping.Clientes)
+        {
+          if (item.Nome == NomeClienteSimularVenda)
+          {
+            clienteExiste = true;
+            auxCliente = item;
+          }
+        }
+       
+        if (!clienteExiste)
+        {
+          Console.WriteLine("Cliente não encontrado, " +
+          "tente novamente");
+          SimularVendaSelfService();
+        }
+
+        auxSelfService.Vender(auxCliente, auxProduto);
+        AcaoConcluida();
+        MenuSelfService();
+
+
+    }
+
 
     private void MenuLojaPassagem()
     {
