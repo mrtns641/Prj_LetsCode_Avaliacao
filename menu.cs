@@ -374,8 +374,8 @@ namespace Prj_LetsCode_Avaliacao
             }
         }
 
-        private void CadastrarCliente(){
-
+        private void CadastrarCliente(){    
+            shopping.AddCliente();
         }
 
 
@@ -408,7 +408,10 @@ namespace Prj_LetsCode_Avaliacao
             }
         }
 
-        private void CadastrarPassageiro(){}
+        private void CadastrarPassageiro()
+        {
+            shopping.AddPassageiro();
+        }
 
         private void RegistrarBagagem(){}
 

@@ -11,6 +11,52 @@ namespace Prj_LetsCode_Avaliacao
         private List<SelfService> selfServices = new List<SelfService>();
         private List<LojaPassagens> lojasPassagens = new List<LojaPassagens>();
 
+        private List<Cliente> clientes = new List<Cliente>();
+
+        public List<Cliente> Clientes{
+            get{return clientes;}
+        }
+
+        private List<Passageiros> passageiros = new List<Passageiros>();
+
+        public List<Passageiros> Passageiros{
+            get{return passageiros;}
+        }
+        
+         public Passageiros RecebePassageiro()
+        {
+            Console.Write("Nome: ");
+            string nome = Console.ReadLine();
+            Console.Write("CPF: ");
+            string cpf = Console.ReadLine();
+            Console.Write("Passaporte: ");
+            string passaporte=Console.ReadLine();
+            Passageiros auxiliar = new Passageiros(nome, cpf, passaporte);
+            return auxiliar;
+        }
+
+
+        public void AddPassageiro()
+        {
+            passageiros.Add(RecebePassageiro());
+        }
+
+         public Cliente RecebeCliente()
+        {
+            Console.Write("Nome: ");
+            string nome = Console.ReadLine();
+            Console.Write("CPF: ");
+            string cpf = Console.ReadLine();
+            Cliente auxiliar = new Cliente(nome, cpf);
+            return auxiliar;
+        }
+
+
+        public void AddCliente()
+        {
+            clientes.Add(RecebeCliente());
+        }
+
         public List<FastFood> FastFoods{
             get{return fastFoods;}
         }
