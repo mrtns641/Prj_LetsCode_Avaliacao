@@ -54,7 +54,7 @@ namespace Prj_LetsCode_Avaliacao
 
         public void ListarSelfServices(){
 
-            Console.WriteLine("SelfServices cadastrados:");
+            Console.WriteLine("Self Services cadastrados:");
 
             foreach (Loja loja in selfServices)
             {

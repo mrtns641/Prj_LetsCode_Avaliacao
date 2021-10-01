@@ -6,6 +6,30 @@ namespace Prj_LetsCode_Avaliacao
     public class LojaPassagens : Loja, ILoja
     {
 
+        protected List<Aeronave> aeronaves = new List<Aeronave>();
+
+        public List<Aeronave> Aeronave
+        {
+            get {return aeronaves;}
+        }
+
+
+        public Aeronave RecebeAeronave()
+        {
+            Console.Write("Modelo: ");
+            string modelo = Console.ReadLine();
+            Console.Write("Idenficação: ");
+            string identificacao = Console.ReadLine();
+            Aeronave auxiliar = new Aeronave(modelo, identificacao);
+            return auxiliar;
+        }
+
+
+        public void AddAeronave()
+        {
+            aeronaves.Add(RecebeAeronave());
+        }
+
         // Método de pesagem do prato.
         public void PesarPrato(){
             Console.WriteLine($"Pesando o prato de .");

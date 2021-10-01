@@ -8,7 +8,7 @@ namespace Prj_LetsCode_Avaliacao
         Shopping shopping = new Shopping();
 
         public void AcaoConcluida(){
-            Console.WriteLine("Ação foi concluida com exito!\n");
+            Console.WriteLine("\nAção concluída com êxito!\n");
         }
 
         public void MenuInicial()
@@ -65,16 +65,16 @@ namespace Prj_LetsCode_Avaliacao
         {
             switch (opcaoSelecionada())
             {
-                case 1: //cadastrar produto fast food
+                case 1:
                     MenuFastFood();
                     break;
-                case 2: //cadastrar produto self service
+                case 2:
                     MenuSelfService();
                     break;
-                case 3: //cadastrar passagem ou cadastrar aeronave
+                case 3:
                     MenuLojaPassagem();
                     break;
-                case 0: //voltar
+                case 0:
                     MenuInicial();
                     break;
                 default:
@@ -124,6 +124,11 @@ namespace Prj_LetsCode_Avaliacao
         }
 
         private void CadastrarProdutoFastFood(){
+            if(shopping.FastFoods.Count == 0){
+                Console.WriteLine("É necessário antes cadastrar alguma loja de fast food para prosseguir com o cadastro do produto!\n");
+                MenuFastFood();
+            }
+            
             shopping.ListarFastFoods();
             Console.Write("Digite o nome do FastFood que deseja " +
             "cadastrar o produto: ");
@@ -136,13 +141,13 @@ namespace Prj_LetsCode_Avaliacao
                     item.AddProduto();
                     Console.WriteLine("Listando:");
                     item.ListarProdutos();
-                } 
+                }
             }
             
             if(lojaExiste) {
                 AcaoConcluida();
                 MenuFastFood();
-            } else {
+            }else {
                 Console.WriteLine("Loja não encontrada, " +
                 "tente novamente");
                 CadastrarProdutoFastFood();
@@ -190,9 +195,44 @@ namespace Prj_LetsCode_Avaliacao
             }
         }
 
-        private void CadastrarSelfService(){}
+        private void CadastrarSelfService(){
+            Console.WriteLine("Nome do Self Service:");
+            SelfService selfService = new SelfService(Console.ReadLine());
+            shopping.AddSelfService(selfService);
+            AcaoConcluida();
+            MenuSelfService();
+        }
 
-        private void CadastrarProdutoSelfService(){}
+        private void CadastrarProdutoSelfService(){
+            if(shopping.SelfServices.Count == 0){
+                Console.WriteLine("É necessário antes cadastrar alguma loja de self service para prosseguir com o cadastro do produto!\n");
+                MenuSelfService();
+            }
+            
+            shopping.ListarSelfServices();
+            Console.Write("Digite o nome do Self Service que deseja " +
+            "cadastrar o produto: ");
+            string NomeLojaReceberaProduto = Console.ReadLine();
+            bool lojaExiste = false;
+            foreach (var item in shopping.SelfServices)
+            {
+                if(item.Nome == NomeLojaReceberaProduto){
+                    lojaExiste = true;
+                    item.AddProduto();
+                    Console.WriteLine("Listando:");
+                    item.ListarProdutos();
+                }
+            }
+            
+            if(lojaExiste) {
+                AcaoConcluida();
+                MenuSelfService();
+            }else {
+                Console.WriteLine("Loja não encontrada, " +
+                "tente novamente");
+                CadastrarProdutoSelfService();
+            }
+        }
 
 
 
@@ -231,11 +271,53 @@ namespace Prj_LetsCode_Avaliacao
             }
         }
 
-        private void CadastrarLojaPassagem(){}
+        private void CadastrarLojaPassagem(){
+            Console.WriteLine("Nome da loja de passagens:");
+            LojaPassagens lojaPassagens = new LojaPassagens(Console.ReadLine());
+            shopping.AddLojaPassagens(lojaPassagens);
+            AcaoConcluida();
+            MenuLojaPassagem();
+        }
 
         private void CadastrarPassagem(){}
 
-        private void CadastrarAeronave(){}
+        private void CadastrarAeronave(){
+            if(shopping.LojasPassagens.Count == 0){
+                Console.WriteLine("É necessário antes cadastrar alguma loja de passagens para prosseguir com o cadastro da aeronave!\n");
+                MenuLojaPassagem();
+            }
+            
+            shopping.ListarLojasDePassagens();
+            Console.Write("Digite o nome da loja de passagens que deseja " +
+            "cadastrar a aeronave: ");
+            string NomeLojaReceberaAeronave = Console.ReadLine();
+            bool lojaExiste = false;
+            foreach (var item in shopping.LojasPassagens)
+            {
+                if(item.Nome == NomeLojaReceberaAeronave){
+                    lojaExiste = true;
+                    item.AddAeronave();
+            
+                    // Console.WriteLine("Cadastrando:");
+                    // item.ListarProdutos();
+                }
+            }
+            
+            if(lojaExiste) {
+                AcaoConcluida();
+                MenuLojaPassagem();
+            }else {
+                Console.WriteLine("Loja não encontrada, " +
+                "tente novamente");
+                CadastrarAeronave();
+            }
+
+
+
+
+
+
+        }
         
 
         private void MenuGerenciarClientes()
