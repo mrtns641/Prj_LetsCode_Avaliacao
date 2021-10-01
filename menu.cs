@@ -7,11 +7,14 @@ namespace Prj_LetsCode_Avaliacao
   {
     Shopping shopping = new Shopping();
 
+    /* método que é executado como confirmação de que a ação desejada 
+    pelo usuario foi executada com sucesso*/
     public void AcaoConcluida()
     {
       Console.WriteLine("\nAção concluída com êxito!\n");
     }
 
+    // método apresenta o menu inicial 
     public void MenuInicial()
     {
       Console.WriteLine("Favor selecionar uma opção para gerenciar ou simular:");
@@ -21,6 +24,8 @@ namespace Prj_LetsCode_Avaliacao
       OpcaoSelecionadaMenuInicial();
     }
 
+    /* método que de acordo com  a opção selecionada pelo usuário
+    no menu inicial leva a outro método*/
     private void OpcaoSelecionadaMenuInicial()
     {
       switch (opcaoSelecionada())
@@ -42,6 +47,7 @@ namespace Prj_LetsCode_Avaliacao
       }
     }
 
+    // método que retorna a opção que o usuário digitou 
     private int opcaoSelecionada()
     {
       Console.Write("Digite o número da opção selecionada: ");
@@ -50,6 +56,7 @@ namespace Prj_LetsCode_Avaliacao
       return opcao;
     }
 
+    // menu que apresenta os segmentos dos tipos de lojas
     public void MenuSegmento()
     {
       Console.WriteLine("Selecione uma opção de segmento abaixo: ");
@@ -60,6 +67,8 @@ namespace Prj_LetsCode_Avaliacao
       OpcaoSelecionadaMenuSegmento();
     }
 
+    /* método que de acordo com  a opção selecionada pelo usuário
+    leva a outro método*/
     private void OpcaoSelecionadaMenuSegmento()
     {
       switch (opcaoSelecionada())
@@ -85,7 +94,6 @@ namespace Prj_LetsCode_Avaliacao
 
 
     //menus tem que mostrar mensagem da opção a ser selecionada
-
     private void MenuFastFood()
     {
       Console.WriteLine("Selecione uma opção abaixo:");
@@ -119,6 +127,7 @@ namespace Prj_LetsCode_Avaliacao
       }
     }
 
+    // método que cadastra FastFoods
     private void CadastrarFastFood()
     {
       Console.WriteLine("Nome do FastFood:");
@@ -127,6 +136,7 @@ namespace Prj_LetsCode_Avaliacao
       AcaoConcluida();
       MenuFastFood();
     }
+
 
     private void CadastrarProdutoFastFood()
     {
@@ -175,6 +185,7 @@ namespace Prj_LetsCode_Avaliacao
       fastFood.Nome == NomeLojaReceberaProduto select 
       fastFood).FirstOrDefault().AddProduto();*/
     }
+
 
       private void SimularVendaFastFood()
       {
@@ -271,7 +282,7 @@ namespace Prj_LetsCode_Avaliacao
       
       }
 
-
+    
     private void MenuSelfService()
     {
       Console.WriteLine("Selecione uma opção abaixo:");
@@ -305,6 +316,7 @@ namespace Prj_LetsCode_Avaliacao
       }
     }
 
+    // método que cadastra um SelService
     private void CadastrarSelfService()
     {
       Console.WriteLine("Nome do Self Service:");
@@ -479,6 +491,7 @@ namespace Prj_LetsCode_Avaliacao
       }
     }
 
+    // método que cadastra uma loja de passagens
     private void CadastrarLojaPassagem()
     {
       Console.WriteLine("Nome da loja de passagens:");
@@ -687,6 +700,7 @@ namespace Prj_LetsCode_Avaliacao
       }
     }
 
+    // método que cadastra um Cliente
     private void CadastrarCliente()
     {
       shopping.AddCliente();
@@ -724,6 +738,7 @@ namespace Prj_LetsCode_Avaliacao
       }
     }
 
+    // método que cadastra um Passageiro
     private void CadastrarPassageiro()
     {
       shopping.AddPassageiro();
