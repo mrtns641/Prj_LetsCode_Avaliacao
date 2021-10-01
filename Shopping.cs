@@ -121,5 +121,18 @@ namespace Prj_LetsCode_Avaliacao
 
             Console.WriteLine("");
         }
+
+        public void ListarPassageiros(){
+
+            Console.WriteLine("Passageiros cadastrados:");
+
+            foreach (Passageiros passageiro in passageiros)
+            {
+                Console.WriteLine(passageiro.Nome);
+            }
+
+            Console.WriteLine("");
+        }
+
     }
 }

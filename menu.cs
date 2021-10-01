@@ -256,8 +256,7 @@ namespace Prj_LetsCode_Avaliacao
     {
       Console.WriteLine("Selecione uma opção abaixo:");
       Console.WriteLine("1 - Cadastrar loja de Loja de passagens");
-      Console.WriteLine("2 - Cadastrar passagem");
-      Console.WriteLine("3 - Cadastrar aeronave");
+      Console.WriteLine("2 - Cadastrar aeronave");
       Console.WriteLine("0 - Voltar");
       OpcaoSelecionadaMenuLojaPassagem();
     }
@@ -270,12 +269,9 @@ namespace Prj_LetsCode_Avaliacao
           CadastrarLojaPassagem();
           break;
         case 2:
-          CadastrarPassagem();
-          break;
-        case 3:
           CadastrarAeronave();
           break;
-        case 0: //voltar
+        case 0: 
           MenuSegmento();
           break;
         default:
@@ -293,9 +289,7 @@ namespace Prj_LetsCode_Avaliacao
       AcaoConcluida();
       MenuLojaPassagem();
     }
-
-    private void CadastrarPassagem() { }
-
+    
     private void CadastrarAeronave()
     {
       if (shopping.LojasPassagens.Count == 0)
@@ -433,9 +427,43 @@ namespace Prj_LetsCode_Avaliacao
       MenuPassageiro();
     }
 
-    private void RegistrarBagagem() { }
+    private void RegistrarBagagem() 
+    { 
+      if (shopping.Passageiros.Count == 0)
+      {
+        Console.WriteLine("É necessário antes cadastrar algum passageiro para prosseguir com o registro de bagagem!\n");
+        MenuPassageiro();
+      }
 
+      shopping.ListarPassageiros();
+      Console.Write("Digite o nome do passageiro " +
+      "que se deseja registrar bagagem: ");
+      string NomePassageiroRegistraBagagem = Console.ReadLine();
+      bool passageiroExiste = false;
+      foreach (var item in shopping.Passageiros)
+      {
+        if (item.Nome == NomePassageiroRegistraBagagem)
+        {
+          passageiroExiste = true;
+          item.AddBagagem();
 
+          // Console.WriteLine("Cadastrando:");
+          // item.ListarProdutos();
+        }
 
+        if (passageiroExiste)
+        {
+          AcaoConcluida();
+          MenuPassageiro();
+        }
+        else
+        {
+        Console.WriteLine("Passageiro não encontrado, " +
+        "tente novamente");
+        RegistrarBagagem();
+        }
+    }
+
+    }
   }
 }
