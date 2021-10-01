@@ -24,12 +24,6 @@ namespace Prj_LetsCode_Avaliacao
             this.Nome = nome;
             this.Cpf = cpf;
         }
-
-        // public String EscolherProduto(){
-        //     string nomeProdutoEscolhido
-        //     return
-        // }
-
     }
 
 }

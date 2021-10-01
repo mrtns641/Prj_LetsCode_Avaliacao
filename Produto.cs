@@ -16,7 +16,6 @@ namespace Prj_LetsCode_Avaliacao
             set{ preco = value;}
         }
 
-        // Construtor da Classe Produto
         public Produto(string nome, double preco){
             this.Nome = nome;
             this.Preco = preco;

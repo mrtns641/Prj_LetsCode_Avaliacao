@@ -35,7 +35,6 @@ namespace Prj_LetsCode_Avaliacao
       set { aeronave = value; }
     }
 
-
     public int Assento
     {
       get { return assento; }
@@ -51,7 +50,5 @@ namespace Prj_LetsCode_Avaliacao
       this.Destino = destino;
       this.Valor = valor;
     }
-
   }
-
 }

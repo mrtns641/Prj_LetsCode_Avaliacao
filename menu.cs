@@ -444,16 +444,14 @@ namespace Prj_LetsCode_Avaliacao
         auxSelfService.Vender(auxCliente, auxProduto);
         AcaoConcluida();
         MenuSelfService();
-
-
     }
-
 
     private void MenuLojaPassagem()
     {
       Console.WriteLine("Selecione uma opção abaixo:");
       Console.WriteLine("1 - Cadastrar loja de Loja de passagens");
       Console.WriteLine("2 - Cadastrar aeronave");
+      Console.WriteLine("3 - Simular Venda de Passagem");
       Console.WriteLine("0 - Voltar");
       OpcaoSelecionadaMenuLojaPassagem();
     }
@@ -467,6 +465,9 @@ namespace Prj_LetsCode_Avaliacao
           break;
         case 2:
           CadastrarAeronave();
+          break;
+        case 3:
+          SimularVendaPassagem();
           break;
         case 0: 
           MenuSegmento();
@@ -525,6 +526,112 @@ namespace Prj_LetsCode_Avaliacao
       }
     }
 
+    private void SimularVendaPassagem()
+    {
+      
+        if (shopping.Passageiros.Count == 0)
+        {
+          Console.WriteLine("É necessário antes cadastrar algum passageiro para simular uma venda de passagem!\n");
+          MenuPassageiro();
+        }
+
+        if (shopping.LojasPassagens.Count == 0)
+        {
+          Console.WriteLine("É necessário antes cadastrar alguma loja de passagem para prosseguir e simular uma venda de passagem!\n");
+          MenuSelfService();
+        }
+
+        foreach (var item in shopping.LojasPassagens)
+        {
+           if (item.Aeronaves.Count == 0)
+            {
+            Console.WriteLine("É necessário antes cadastrar alguma aeronave em alguma loja de passagens para simular uma venda de passagem!\n");
+            MenuLojaPassagem();
+            }
+        }
+
+        shopping.ListarLojasDePassagens();
+        Console.Write("Digite o nome da loja de passagens que deseja " +
+        "simular venda: ");
+        string NomeLojaSimularVenda = Console.ReadLine();
+        bool lojaExiste = false;
+        LojaPassagens auxLojaPassagens = new LojaPassagens(""); 
+        foreach (var item in shopping.LojasPassagens)
+        {
+          if (item.Nome == NomeLojaSimularVenda)
+          {
+            lojaExiste = true;
+            auxLojaPassagens = item;
+          }
+        }
+       
+        if (!lojaExiste)
+        {
+          Console.WriteLine("Loja não encontrada, " +
+          "tente novamente");
+          SimularVendaPassagem();
+        }
+
+        auxLojaPassagens.ListarAeronaves();
+        Console.Write("Digite o nome da aeronave que deseja " +
+        "voar: ");
+        string ModeloAeronaveSimularVenda = Console.ReadLine();
+        bool aeronaveExiste = false;
+        Aeronave auxAeronave = new Aeronave("",""); 
+        foreach (var item in auxLojaPassagens.Aeronaves)
+        {
+          if (item.Modelo == ModeloAeronaveSimularVenda)
+          {
+            aeronaveExiste = true;
+            auxAeronave = item;
+          }
+        }
+       
+        if (!aeronaveExiste)
+        {
+          Console.WriteLine("Aeronave não encontrada, " +
+          "tente novamente");
+          SimularVendaPassagem();
+        }
+
+        shopping.ListarPassageiros();
+        Console.Write("Digite o nome do passageiro que se deseja " +
+        "incluir na passagem: ");
+        string NomePassageiroSimularVenda = Console.ReadLine();
+        bool passageiroExiste = false;
+        Passageiros auxPassageiro = new Passageiros("","",""); 
+        foreach (var item in shopping.Passageiros)
+        {
+          if (item.Nome == NomePassageiroSimularVenda)
+          {
+            passageiroExiste = true;
+            auxPassageiro = item;
+          }
+        }
+       
+        if (!passageiroExiste)
+        {
+          Console.WriteLine("Passageiro não encontrado, " +
+          "tente novamente");
+          SimularVendaPassagem();
+        }
+        
+        Console.Write("Digite o número do assento: ");
+        int assento;
+        Int32.TryParse(Console.ReadLine(), out assento);
+    
+        Console.Write("Digite o destino do voo: ");
+        string destino = Console.ReadLine();
+      
+        Console.Write("Digite o valor da passagem: ");
+        double valor;
+        Double.TryParse(Console.ReadLine(), out valor);
+
+        Passagem passagem = new Passagem(auxPassageiro, auxAeronave, assento, destino, valor);
+        auxLojaPassagens.VenderPassagem(passagem);
+        AcaoConcluida();
+        MenuLojaPassagem();
+    }
 
     private void MenuGerenciarClientes()
     {

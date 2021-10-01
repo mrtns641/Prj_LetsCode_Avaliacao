@@ -2,17 +2,21 @@ using System;
 using System.Collections.Generic;
 
 namespace Prj_LetsCode_Avaliacao
-{                                                                                           //NAO ESQUECE DA COITADA DA ILOJA AQUI OK
-    public class LojaPassagens : Loja //, ILoja
+{
+    public class LojaPassagens : Loja                               
     {
 
         protected List<Aeronave> aeronaves = new List<Aeronave>();
 
-        public List<Aeronave> Aeronave
+        public List<Aeronave> Aeronaves
         {
             get {return aeronaves;}
         }
 
+        public void AddAeronave()
+        {
+            aeronaves.Add(RecebeAeronave());
+        }
 
         public Aeronave RecebeAeronave()
         {
@@ -24,24 +28,27 @@ namespace Prj_LetsCode_Avaliacao
             return auxiliar;
         }
 
+        public void ListarAeronaves(){
 
-        public void AddAeronave()
-        {
-            aeronaves.Add(RecebeAeronave());
+            Console.WriteLine("Aeronaves cadastradas:");
+
+            foreach (Aeronave aeronave in aeronaves)
+            {
+                Console.WriteLine(aeronave.Modelo);
+            }
+
+            Console.WriteLine("");
         }
 
-        // Método de pesagem do prato.
-        public void PesarPrato(){
-            Console.WriteLine($"Pesando o prato de .");
-        }
-        
-        // Método de venda.
-        public virtual void Vender(Venda venda){
-            Console.WriteLine($"Produto - prato de ");
-            PesarPrato();
-            Console.WriteLine($"Valor total: R$");
-            Console.WriteLine($"CPF na nota: ");
-            Console.WriteLine($" - Venda concluída! Volte sempre, !\n");
+        public virtual void VenderPassagem(Passagem passagem){
+            Console.WriteLine("\n###################################################");
+            Console.WriteLine($"Destino: {passagem.Destino}");
+            Console.WriteLine($"Nome: {passagem.Passageiro.Nome} CPF: {passagem.Passageiro.Cpf} Passaporte:{passagem.Passageiro.Passaporte}");
+            Console.WriteLine($"Aeronave: {passagem.Aeronave.Modelo} - {passagem.Aeronave.Identificacao} Assento: {passagem.Assento}");
+            Console.WriteLine($"Total pago: R$ {passagem.Valor}");
+            Console.WriteLine($"Agradecemos por voar {Nome}! Boa viagem!");
+            Console.WriteLine($"Processo finalizado!");
+            Console.WriteLine("###################################################\n");
         }
         
         // Construtor da Classe LojaPassagens.
