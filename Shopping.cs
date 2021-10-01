@@ -134,5 +134,17 @@ namespace Prj_LetsCode_Avaliacao
             Console.WriteLine("");
         }
 
+        public void ListarClientes(){
+
+            Console.WriteLine("Clientes cadastrados:");
+
+            foreach (Cliente cliente in clientes)
+            {
+                Console.WriteLine(cliente.Nome);
+            }
+
+            Console.WriteLine("");
+        }
+
     }
 }

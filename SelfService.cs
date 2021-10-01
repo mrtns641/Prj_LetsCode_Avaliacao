@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Prj_LetsCode_Avaliacao
 {
-    public class SelfService : Loja, ILoja
+    public class SelfService : Loja //, ILoja
     {
 
         // Método de pesagem do prato.

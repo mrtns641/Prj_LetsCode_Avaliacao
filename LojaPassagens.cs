@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Prj_LetsCode_Avaliacao
 {
-    public class LojaPassagens : Loja, ILoja
+    public class LojaPassagens : Loja //, ILoja
     {
 
         protected List<Aeronave> aeronaves = new List<Aeronave>();

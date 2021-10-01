@@ -187,12 +187,12 @@ namespace Prj_LetsCode_Avaliacao
          if (shopping.Clientes.Count == 0)
         {
           Console.WriteLine("É necessário antes cadastrar algum cliente para simular uma venda!\n");
-          MenuGerenciarClientes();
+          MenuCliente();
         }
 
         foreach (var item in shopping.FastFoods)
         {
-           if (shopping.FastFoods.Produtos.Count == 0)
+           if (item.Produtos.Count == 0)
             {
             Console.WriteLine("É necessário antes cadastrar algum produto em alguma loja de fast food para simular uma venda!\n");
             MenuFastFood();
@@ -221,8 +221,54 @@ namespace Prj_LetsCode_Avaliacao
           SimularVendaFastFood();
         }
 
-        //Implementar o resto da função com produto e cliente
+        auxFastFood.ListarProdutos();
+        Console.Write("Digite o nome do produto que deseja " +
+        "simular venda: ");
+        string NomeProdutoSimularVenda = Console.ReadLine();
+        bool produtoExiste = false;
+        Produto auxProduto = new Produto("",0); 
+        foreach (var item in auxFastFood.Produtos)
+        {
+          if (item.Nome == NomeProdutoSimularVenda)
+          {
+            produtoExiste = true;
+            auxProduto = item;
+          }
+        }
+       
+        if (!produtoExiste)
+        {
+          Console.WriteLine("Produto não encontrado, " +
+          "tente novamente");
+          SimularVendaFastFood();
+        }
 
+        shopping.ListarClientes();
+        Console.Write("Digite o nome do cliente que se deseja " +
+        "simular venda: ");
+        string NomeClienteSimularVenda = Console.ReadLine();
+        bool clienteExiste = false;
+        Cliente auxCliente = new Cliente("",""); 
+        foreach (var item in shopping.Clientes)
+        {
+          if (item.Nome == NomeClienteSimularVenda)
+          {
+            clienteExiste = true;
+            auxCliente = item;
+          }
+        }
+       
+        if (!clienteExiste)
+        {
+          Console.WriteLine("Cliente não encontrado, " +
+          "tente novamente");
+          SimularVendaFastFood();
+        }
+
+        auxFastFood.Vender(auxCliente, auxProduto);
+        AcaoConcluida();
+        MenuFastFood();
+      
       }
 
 
