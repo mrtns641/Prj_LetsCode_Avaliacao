@@ -151,6 +151,7 @@ namespace Prj_LetsCode_Avaliacao
       "cadastrar o produto: ");
       string NomeLojaReceberaProduto = Console.ReadLine();
       bool lojaExiste = false;
+      // verifica os itens contidos dentro dos fast foods no shopping
       foreach (var item in shopping.FastFoods)
       {
         if (item.Nome == NomeLojaReceberaProduto)
@@ -173,116 +174,105 @@ namespace Prj_LetsCode_Avaliacao
         "tente novamente");
         CadastrarProdutoFastFood();
       }
-
-      /*não usamos o linq pq do jeito apresentado abaixo não 
-      tem tratamento de erro; ou seja, se o usuário digitar 
-      uma loja inexistente sobe um erro na cara dele. Visto isso
-      optamos pelo foreach tradicional com um 'tratamento de 
-      erro' caso o usuário digite o nome de uma loja 
-      inexistente*/
-
-      /*(from fastFood in shopping.FastFoods where 
-      fastFood.Nome == NomeLojaReceberaProduto select 
-      fastFood).FirstOrDefault().AddProduto();*/
     }
 
 
-      private void SimularVendaFastFood()
+    private void SimularVendaFastFood()
+    {
+      if (shopping.FastFoods.Count == 0)
       {
-        if (shopping.FastFoods.Count == 0)
-        {
-          Console.WriteLine("É necessário antes cadastrar alguma loja de fast food para prosseguir e simular uma venda!\n");
-          MenuFastFood();
-        }
-
-         if (shopping.Clientes.Count == 0)
-        {
-          Console.WriteLine("É necessário antes cadastrar algum cliente para simular uma venda!\n");
-          MenuCliente();
-        }
-
-        foreach (var item in shopping.FastFoods)
-        {
-           if (item.Produtos.Count == 0)
-            {
-            Console.WriteLine("É necessário antes cadastrar algum produto em alguma loja de fast food para simular uma venda!\n");
-            MenuFastFood();
-            }
-        }
-
-        shopping.ListarFastFoods();
-        Console.Write("Digite o nome do FastFood que deseja " +
-        "simular venda: ");
-        string NomeLojaSimularVenda = Console.ReadLine();
-        bool lojaExiste = false;
-        FastFood auxFastFood = new FastFood(""); 
-        foreach (var item in shopping.FastFoods)
-        {
-          if (item.Nome == NomeLojaSimularVenda)
-          {
-            lojaExiste = true;
-            auxFastFood = item;
-          }
-        }
-       
-        if (!lojaExiste)
-        {
-          Console.WriteLine("Loja não encontrada, " +
-          "tente novamente");
-          SimularVendaFastFood();
-        }
-
-        auxFastFood.ListarProdutos();
-        Console.Write("Digite o nome do produto que deseja " +
-        "simular venda: ");
-        string NomeProdutoSimularVenda = Console.ReadLine();
-        bool produtoExiste = false;
-        Produto auxProduto = new Produto("",0); 
-        foreach (var item in auxFastFood.Produtos)
-        {
-          if (item.Nome == NomeProdutoSimularVenda)
-          {
-            produtoExiste = true;
-            auxProduto = item;
-          }
-        }
-       
-        if (!produtoExiste)
-        {
-          Console.WriteLine("Produto não encontrado, " +
-          "tente novamente");
-          SimularVendaFastFood();
-        }
-
-        shopping.ListarClientes();
-        Console.Write("Digite o nome do cliente que se deseja " +
-        "simular venda: ");
-        string NomeClienteSimularVenda = Console.ReadLine();
-        bool clienteExiste = false;
-        Cliente auxCliente = new Cliente("",""); 
-        foreach (var item in shopping.Clientes)
-        {
-          if (item.Nome == NomeClienteSimularVenda)
-          {
-            clienteExiste = true;
-            auxCliente = item;
-          }
-        }
-       
-        if (!clienteExiste)
-        {
-          Console.WriteLine("Cliente não encontrado, " +
-          "tente novamente");
-          SimularVendaFastFood();
-        }
-
-        auxFastFood.Vender(auxCliente, auxProduto);
-        AcaoConcluida();
+        Console.WriteLine("É necessário antes cadastrar alguma loja de fast food para prosseguir e simular uma venda!\n");
         MenuFastFood();
-      
       }
 
-    
+      if (shopping.Clientes.Count == 0)
+      {
+        Console.WriteLine("É necessário antes cadastrar algum cliente para simular uma venda!\n");
+        MenuCliente();
+      }
+
+      foreach (var item in shopping.FastFoods)
+      {
+        if (item.Produtos.Count == 0)
+        {
+          Console.WriteLine("É necessário antes cadastrar algum produto em alguma loja de fast food para simular uma venda!\n");
+          MenuFastFood();
+        }
+      }
+
+      shopping.ListarFastFoods();
+      Console.Write("Digite o nome do FastFood que deseja " +
+      "simular venda: ");
+      string NomeLojaSimularVenda = Console.ReadLine();
+      bool lojaExiste = false;
+      FastFood auxFastFood = new FastFood("");
+      foreach (var item in shopping.FastFoods)
+      {
+        if (item.Nome == NomeLojaSimularVenda)
+        {
+          lojaExiste = true;
+          auxFastFood = item;
+        }
+      }
+
+      if (!lojaExiste)
+      {
+        Console.WriteLine("Loja não encontrada, " +
+        "tente novamente");
+        SimularVendaFastFood();
+      }
+
+      auxFastFood.ListarProdutos();
+      Console.Write("Digite o nome do produto que deseja " +
+      "simular venda: ");
+      string NomeProdutoSimularVenda = Console.ReadLine();
+      bool produtoExiste = false;
+      Produto auxProduto = new Produto("", 0);
+      foreach (var item in auxFastFood.Produtos)
+      {
+        if (item.Nome == NomeProdutoSimularVenda)
+        {
+          produtoExiste = true;
+          auxProduto = item;
+        }
+      }
+
+      if (!produtoExiste)
+      {
+        Console.WriteLine("Produto não encontrado, " +
+        "tente novamente");
+        SimularVendaFastFood();
+      }
+
+      shopping.ListarClientes();
+      Console.Write("Digite o nome do cliente que se deseja " +
+      "simular venda: ");
+      string NomeClienteSimularVenda = Console.ReadLine();
+      bool clienteExiste = false;
+      Cliente auxCliente = new Cliente("", "");
+      foreach (var item in shopping.Clientes)
+      {
+        if (item.Nome == NomeClienteSimularVenda)
+        {
+          clienteExiste = true;
+          auxCliente = item;
+        }
+      }
+
+      if (!clienteExiste)
+      {
+        Console.WriteLine("Cliente não encontrado, " +
+        "tente novamente");
+        SimularVendaFastFood();
+      }
+
+      auxFastFood.Vender(auxCliente, auxProduto);
+      AcaoConcluida();
+      MenuFastFood();
+
+    }
+
+
     private void MenuSelfService()
     {
       Console.WriteLine("Selecione uma opção abaixo:");
@@ -341,6 +331,7 @@ namespace Prj_LetsCode_Avaliacao
       bool lojaExiste = false;
       foreach (var item in shopping.SelfServices)
       {
+        // verifica se o nome do item é igual o nomeda loja que recebe o produto
         if (item.Nome == NomeLojaReceberaProduto)
         {
           lojaExiste = true;
@@ -349,7 +340,7 @@ namespace Prj_LetsCode_Avaliacao
           item.ListarProdutos();
         }
       }
-
+      // verifica se  loja existe
       if (lojaExiste)
       {
         AcaoConcluida();
@@ -365,97 +356,97 @@ namespace Prj_LetsCode_Avaliacao
 
     private void SimularVendaSelfService()
     {
-        if (shopping.Clientes.Count == 0)
-        {
-          Console.WriteLine("É necessário antes cadastrar algum cliente para simular uma venda!\n");
-          MenuCliente();
-        }
+      if (shopping.Clientes.Count == 0)
+      {
+        Console.WriteLine("É necessário antes cadastrar algum cliente para simular uma venda!\n");
+        MenuCliente();
+      }
 
-        if (shopping.SelfServices.Count == 0)
+      if (shopping.SelfServices.Count == 0)
+      {
+        Console.WriteLine("É necessário antes cadastrar alguma loja de self service para prosseguir e simular uma venda!\n");
+        MenuSelfService();
+      }
+
+
+      foreach (var item in shopping.SelfServices)
+      {
+        if (item.Produtos.Count == 0)
         {
-          Console.WriteLine("É necessário antes cadastrar alguma loja de self service para prosseguir e simular uma venda!\n");
+          Console.WriteLine("É necessário antes cadastrar algum produto em alguma loja de self service para simular uma venda!\n");
           MenuSelfService();
         }
+      }
 
+      shopping.ListarSelfServices();
+      Console.Write("Digite o nome do SelfService que deseja " +
+      "simular venda: ");
+      string NomeLojaSimularVenda = Console.ReadLine();
+      bool lojaExiste = false;
+      SelfService auxSelfService = new SelfService("");
+      foreach (var item in shopping.SelfServices)
+      {
+        if (item.Nome == NomeLojaSimularVenda)
+        {
+          lojaExiste = true;
+          auxSelfService = item;
+        }
+      }
 
-        foreach (var item in shopping.SelfServices)
-        {
-           if (item.Produtos.Count == 0)
-            {
-            Console.WriteLine("É necessário antes cadastrar algum produto em alguma loja de self service para simular uma venda!\n");
-            MenuSelfService();
-            }
-        }
+      if (!lojaExiste)
+      {
+        Console.WriteLine("Loja não encontrada, " +
+        "tente novamente");
+        SimularVendaSelfService();
+      }
 
-        shopping.ListarSelfServices();
-        Console.Write("Digite o nome do SelfService que deseja " +
-        "simular venda: ");
-        string NomeLojaSimularVenda = Console.ReadLine();
-        bool lojaExiste = false;
-        SelfService auxSelfService = new SelfService(""); 
-        foreach (var item in shopping.SelfServices)
+      auxSelfService.ListarProdutos();
+      Console.Write("Digite o nome do produto que deseja " +
+      "simular venda: ");
+      string NomeProdutoSimularVenda = Console.ReadLine();
+      bool produtoExiste = false;
+      Produto auxProduto = new Produto("", 0);
+      foreach (var item in auxSelfService.Produtos)
+      {
+        if (item.Nome == NomeProdutoSimularVenda)
         {
-          if (item.Nome == NomeLojaSimularVenda)
-          {
-            lojaExiste = true;
-            auxSelfService = item;
-          }
+          produtoExiste = true;
+          auxProduto = item;
         }
-       
-        if (!lojaExiste)
-        {
-          Console.WriteLine("Loja não encontrada, " +
-          "tente novamente");
-          SimularVendaSelfService();
-        }
+      }
 
-        auxSelfService.ListarProdutos();
-        Console.Write("Digite o nome do produto que deseja " +
-        "simular venda: ");
-        string NomeProdutoSimularVenda = Console.ReadLine();
-        bool produtoExiste = false;
-        Produto auxProduto = new Produto("",0); 
-        foreach (var item in auxSelfService.Produtos)
-        {
-          if (item.Nome == NomeProdutoSimularVenda)
-          {
-            produtoExiste = true;
-            auxProduto = item;
-          }
-        }
-       
-        if (!produtoExiste)
-        {
-          Console.WriteLine("Produto não encontrado, " +
-          "tente novamente");
-          SimularVendaSelfService();
-        }
+      if (!produtoExiste)
+      {
+        Console.WriteLine("Produto não encontrado, " +
+        "tente novamente");
+        SimularVendaSelfService();
+      }
 
-        shopping.ListarClientes();
-        Console.Write("Digite o nome do cliente que se deseja " +
-        "simular venda: ");
-        string NomeClienteSimularVenda = Console.ReadLine();
-        bool clienteExiste = false;
-        Cliente auxCliente = new Cliente("",""); 
-        foreach (var item in shopping.Clientes)
+      shopping.ListarClientes();
+      Console.Write("Digite o nome do cliente que se deseja " +
+      "simular venda: ");
+      string NomeClienteSimularVenda = Console.ReadLine();
+      bool clienteExiste = false;
+      Cliente auxCliente = new Cliente("", "");
+      foreach (var item in shopping.Clientes)
+      {
+        if (item.Nome == NomeClienteSimularVenda)
         {
-          if (item.Nome == NomeClienteSimularVenda)
-          {
-            clienteExiste = true;
-            auxCliente = item;
-          }
+          clienteExiste = true;
+          auxCliente = item;
         }
-       
-        if (!clienteExiste)
-        {
-          Console.WriteLine("Cliente não encontrado, " +
-          "tente novamente");
-          SimularVendaSelfService();
-        }
+      }
 
-        auxSelfService.Vender(auxCliente, auxProduto);
-        AcaoConcluida();
-        MenuSelfService();
+      if (!clienteExiste)
+      {
+        Console.WriteLine("Cliente não encontrado, " +
+        "tente novamente");
+        SimularVendaSelfService();
+      }
+
+      auxSelfService.Vender(auxCliente, auxProduto);
+      AcaoConcluida();
+      MenuSelfService();
     }
 
     private void MenuLojaPassagem()
@@ -481,7 +472,7 @@ namespace Prj_LetsCode_Avaliacao
         case 3:
           SimularVendaPassagem();
           break;
-        case 0: 
+        case 0:
           MenuSegmento();
           break;
         default:
@@ -541,109 +532,109 @@ namespace Prj_LetsCode_Avaliacao
 
     private void SimularVendaPassagem()
     {
-      
-        if (shopping.Passageiros.Count == 0)
-        {
-          Console.WriteLine("É necessário antes cadastrar algum passageiro para simular uma venda de passagem!\n");
-          MenuPassageiro();
-        }
 
-        if (shopping.LojasPassagens.Count == 0)
-        {
-          Console.WriteLine("É necessário antes cadastrar alguma loja de passagem para prosseguir e simular uma venda de passagem!\n");
-          MenuSelfService();
-        }
+      if (shopping.Passageiros.Count == 0)
+      {
+        Console.WriteLine("É necessário antes cadastrar algum passageiro para simular uma venda de passagem!\n");
+        MenuPassageiro();
+      }
 
-        foreach (var item in shopping.LojasPassagens)
-        {
-           if (item.Aeronaves.Count == 0)
-            {
-            Console.WriteLine("É necessário antes cadastrar alguma aeronave em alguma loja de passagens para simular uma venda de passagem!\n");
-            MenuLojaPassagem();
-            }
-        }
+      if (shopping.LojasPassagens.Count == 0)
+      {
+        Console.WriteLine("É necessário antes cadastrar alguma loja de passagem para prosseguir e simular uma venda de passagem!\n");
+        MenuSelfService();
+      }
 
-        shopping.ListarLojasDePassagens();
-        Console.Write("Digite o nome da loja de passagens que deseja " +
-        "simular venda: ");
-        string NomeLojaSimularVenda = Console.ReadLine();
-        bool lojaExiste = false;
-        LojaPassagens auxLojaPassagens = new LojaPassagens(""); 
-        foreach (var item in shopping.LojasPassagens)
+      foreach (var item in shopping.LojasPassagens)
+      {
+        if (item.Aeronaves.Count == 0)
         {
-          if (item.Nome == NomeLojaSimularVenda)
-          {
-            lojaExiste = true;
-            auxLojaPassagens = item;
-          }
+          Console.WriteLine("É necessário antes cadastrar alguma aeronave em alguma loja de passagens para simular uma venda de passagem!\n");
+          MenuLojaPassagem();
         }
-       
-        if (!lojaExiste)
-        {
-          Console.WriteLine("Loja não encontrada, " +
-          "tente novamente");
-          SimularVendaPassagem();
-        }
+      }
 
-        auxLojaPassagens.ListarAeronaves();
-        Console.Write("Digite o nome da aeronave que deseja " +
-        "voar: ");
-        string ModeloAeronaveSimularVenda = Console.ReadLine();
-        bool aeronaveExiste = false;
-        Aeronave auxAeronave = new Aeronave("",""); 
-        foreach (var item in auxLojaPassagens.Aeronaves)
+      shopping.ListarLojasDePassagens();
+      Console.Write("Digite o nome da loja de passagens que deseja " +
+      "simular venda: ");
+      string NomeLojaSimularVenda = Console.ReadLine();
+      bool lojaExiste = false;
+      LojaPassagens auxLojaPassagens = new LojaPassagens("");
+      foreach (var item in shopping.LojasPassagens)
+      {
+        if (item.Nome == NomeLojaSimularVenda)
         {
-          if (item.Modelo == ModeloAeronaveSimularVenda)
-          {
-            aeronaveExiste = true;
-            auxAeronave = item;
-          }
+          lojaExiste = true;
+          auxLojaPassagens = item;
         }
-       
-        if (!aeronaveExiste)
-        {
-          Console.WriteLine("Aeronave não encontrada, " +
-          "tente novamente");
-          SimularVendaPassagem();
-        }
+      }
 
-        shopping.ListarPassageiros();
-        Console.Write("Digite o nome do passageiro que se deseja " +
-        "incluir na passagem: ");
-        string NomePassageiroSimularVenda = Console.ReadLine();
-        bool passageiroExiste = false;
-        Passageiros auxPassageiro = new Passageiros("","",""); 
-        foreach (var item in shopping.Passageiros)
-        {
-          if (item.Nome == NomePassageiroSimularVenda)
-          {
-            passageiroExiste = true;
-            auxPassageiro = item;
-          }
-        }
-       
-        if (!passageiroExiste)
-        {
-          Console.WriteLine("Passageiro não encontrado, " +
-          "tente novamente");
-          SimularVendaPassagem();
-        }
-        
-        Console.Write("Digite o número do assento: ");
-        int assento;
-        Int32.TryParse(Console.ReadLine(), out assento);
-    
-        Console.Write("Digite o destino do voo: ");
-        string destino = Console.ReadLine();
-      
-        Console.Write("Digite o valor da passagem: ");
-        double valor;
-        Double.TryParse(Console.ReadLine(), out valor);
+      if (!lojaExiste)
+      {
+        Console.WriteLine("Loja não encontrada, " +
+        "tente novamente");
+        SimularVendaPassagem();
+      }
 
-        Passagem passagem = new Passagem(auxPassageiro, auxAeronave, assento, destino, valor);
-        auxLojaPassagens.VenderPassagem(passagem);
-        AcaoConcluida();
-        MenuLojaPassagem();
+      auxLojaPassagens.ListarAeronaves();
+      Console.Write("Digite o nome da aeronave que deseja " +
+      "voar: ");
+      string ModeloAeronaveSimularVenda = Console.ReadLine();
+      bool aeronaveExiste = false;
+      Aeronave auxAeronave = new Aeronave("", "");
+      foreach (var item in auxLojaPassagens.Aeronaves)
+      {
+        if (item.Modelo == ModeloAeronaveSimularVenda)
+        {
+          aeronaveExiste = true;
+          auxAeronave = item;
+        }
+      }
+
+      if (!aeronaveExiste)
+      {
+        Console.WriteLine("Aeronave não encontrada, " +
+        "tente novamente");
+        SimularVendaPassagem();
+      }
+
+      shopping.ListarPassageiros();
+      Console.Write("Digite o nome do passageiro que se deseja " +
+      "incluir na passagem: ");
+      string NomePassageiroSimularVenda = Console.ReadLine();
+      bool passageiroExiste = false;
+      Passageiros auxPassageiro = new Passageiros("", "", "");
+      foreach (var item in shopping.Passageiros)
+      {
+        if (item.Nome == NomePassageiroSimularVenda)
+        {
+          passageiroExiste = true;
+          auxPassageiro = item;
+        }
+      }
+
+      if (!passageiroExiste)
+      {
+        Console.WriteLine("Passageiro não encontrado, " +
+        "tente novamente");
+        SimularVendaPassagem();
+      }
+
+      Console.Write("Digite o número do assento: ");
+      int assento;
+      Int32.TryParse(Console.ReadLine(), out assento);
+
+      Console.Write("Digite o destino do voo: ");
+      string destino = Console.ReadLine();
+
+      Console.Write("Digite o valor da passagem: ");
+      double valor;
+      Double.TryParse(Console.ReadLine(), out valor);
+
+      Passagem passagem = new Passagem(auxPassageiro, auxAeronave, assento, destino, valor);
+      auxLojaPassagens.VenderPassagem(passagem);
+      AcaoConcluida();
+      MenuLojaPassagem();
     }
 
     private void MenuGerenciarClientes()
@@ -746,8 +737,8 @@ namespace Prj_LetsCode_Avaliacao
       MenuPassageiro();
     }
 
-    private void RegistrarBagagem() 
-    { 
+    private void RegistrarBagagem()
+    {
       if (shopping.Passageiros.Count == 0)
       {
         Console.WriteLine("É necessário antes cadastrar algum passageiro para prosseguir com o registro de bagagem!\n");
@@ -777,11 +768,11 @@ namespace Prj_LetsCode_Avaliacao
         }
         else
         {
-        Console.WriteLine("Passageiro não encontrado, " +
-        "tente novamente");
-        RegistrarBagagem();
+          Console.WriteLine("Passageiro não encontrado, " +
+          "tente novamente");
+          RegistrarBagagem();
         }
-    }
+      }
 
     }
   }
